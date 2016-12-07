@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Barcodegrader</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+        <string name="drawer_open">Abrir menú de navegación</string>
+        <string name="drawer_close">Cerrar menú de navegación</string>
+
+    <string name="nav_loadCsv">Cargar csv</string>
+    <string name="nav_grade">Calificar alumnos</string>
+    <string name="nav_createCodes">Crear códigos</string>
+    <string name="nav_settings">Opciones</string>
+
+    <string name="label_select_csv">Elija un fichero csv:</string>
+    <string name="label_button_select_csv">Cargar fichero</string>
+    <string name="label_filename">Nombre de archivo:</string>
+    <string name="label_nStudents">Número de alumnos:</string>
+    <string name="label_maxScore">Nota máxima:</string>
+    <string name="info_default_noFile">(Ningún fichero cargado)</string>
+    <string name="label_button_showCsv">Mostrar alumnos</string>
+</resources>
