@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.opencsv.CSVReader;
 
@@ -49,7 +50,13 @@ public class LoadCsvFragment extends Fragment {
 
     //Widgets
     private TextView info_filename;
+    private TextView info_nStudents;
+    private TextView info_maxScore;
+
     private String info_filename_text = null;
+    private String file_path = null;
+    private String info_nStudents_text = null;
+    private String info_maxScore_text = null;
 
     private Uri inputUri = null;
     Context applicationContext = null;
@@ -104,10 +111,14 @@ public class LoadCsvFragment extends Fragment {
 
         //Loading info labels
         info_filename = (TextView) view.findViewById(R.id.info_filename);
+        info_nStudents = (TextView) view.findViewById(R.id.info_nStudents);
+        info_maxScore = (TextView) view.findViewById(R.id.info_maxScore);
 
-        //Checking if it's a reload
+        //Checking if it's a reload for rebuilding UI
         if (info_filename_text != null){
             info_filename.setText(info_filename_text);
+            info_nStudents.setText(info_nStudents_text);
+            info_maxScore.setText(info_maxScore_text);
         }
 
         //Assigning onClick for loadCsv button
@@ -124,8 +135,8 @@ public class LoadCsvFragment extends Fragment {
         button_showCsv.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                System.out.println("OTRO");
-                System.out.println(info_filename_text.toString());
+                System.out.println("SECOND");
+                System.out.println(info_filename_text);
             }
         });
 
@@ -216,24 +227,49 @@ public class LoadCsvFragment extends Fragment {
                             reader = new BufferedReader(new InputStreamReader(inputStream));
                             csvFile = new CSVReader(reader);
 
+                            //Checking if it is a csv file
+                            file_path = Uri.decode(inputUri.toString());
 
-                            info_filename_text = inputUri.getPath().toString();
-                            info_filename.setText(info_filename_text);
+                            System.out.println(file_path);
+                            System.out.println(file_path.substring(file_path.length()-4));
 
-                            csvArray.clear();
-                            String[] nextLine;
+                            if(file_path.substring(file_path.length()-4).equals(".csv")){
+                                System.out.println("FILE IS A CSV");
 
-                            try{
-                                while ((nextLine = csvFile.readNext()) != null) {
-                                    // nextLine[] is an array of values from the line
-                                    csvArray.add(nextLine);
-                                    //System.out.println(csvArray.get(0)[0]); // Para mostrar una cadena en concreto: (0) para la linea, [0] para el elemento
+                                String[] aux = file_path.split("/");
+                                for(String aux2 : aux) {
+                                    info_filename_text = aux2;
                                 }
-                            }catch(IOException e){
+                                info_filename.setText(info_filename_text);
 
+                                csvArray.clear();
+                                String[] nextLine;
+
+                                try{
+                                    while ((nextLine = csvFile.readNext()) != null) {
+                                        // nextLine[] is an array of values from the line
+                                        csvArray.add(nextLine);
+                                        //System.out.println(csvArray.get(0)[0]); //(0) for the line, [0] for the element
+                                    }
+
+                                    info_maxScore_text = csvArray.get(1)[5];
+                                    info_maxScore.setText(info_maxScore_text);
+                                    info_nStudents_text = String.valueOf(csvArray.size() - 1);
+                                    info_nStudents.setText(info_nStudents_text);
+
+                                    //TODO Check if the csv file is in the correct format
+
+                                }catch(IOException e){}
+                            }
+                            else{
+                                System.out.println("FILE IS NOT A CSV");
+
+                                Toast.makeText(applicationContext, R.string.alert_noCsv_text, Toast.LENGTH_LONG).show();
+                                file_path = "";
+                                info_filename_text = "";
                             }
                         }catch (FileNotFoundException e){
-
+                            Toast.makeText(applicationContext, R.string.alert_fileNotFound, Toast.LENGTH_LONG).show();
                         }
                     }
 

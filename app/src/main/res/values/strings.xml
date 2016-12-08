@@ -19,4 +19,7 @@
     <string name="label_maxScore">Nota máxima:</string>
     <string name="info_default_noFile">(Ningún fichero cargado)</string>
     <string name="label_button_showCsv">Mostrar alumnos</string>
+
+    <string name="alert_noCsv_text">El fichero elegido no es un csv</string>
+    <string name="alert_fileNotFound">No se puede acceder al fichero elegido</string>
 </resources>
