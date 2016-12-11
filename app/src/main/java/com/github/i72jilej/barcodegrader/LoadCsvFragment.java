@@ -251,13 +251,18 @@ public class LoadCsvFragment extends Fragment {
                                         csvArray.add(nextLine);
                                         //System.out.println(csvArray.get(0)[0]); //(0) for the line, [0] for the element
                                     }
+                                    //TODO Check if the csv file is in the correct format
 
                                     info_maxScore_text = csvArray.get(1)[5];
                                     info_maxScore.setText(info_maxScore_text);
                                     info_nStudents_text = String.valueOf(csvArray.size() - 1);
                                     info_nStudents.setText(info_nStudents_text);
 
-                                    //TODO Check if the csv file is in the correct format
+                                    final Bundle bundle = new Bundle();
+                                    bundle.putString(MainActivity.MESSAGE_FILEPATH, file_path);
+                                    setArguments(bundle);
+
+
 
                                 }catch(IOException e){}
                             }

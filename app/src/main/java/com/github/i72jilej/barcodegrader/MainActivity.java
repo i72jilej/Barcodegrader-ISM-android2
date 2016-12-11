@@ -27,6 +27,12 @@ public class MainActivity extends AppCompatActivity
     LoadCsvFragment loadCsvFragment = null;;
     FragmentManager fragmentManager = getSupportFragmentManager();
 
+    //Intent messages
+    final static String MESSAGE_ARRAY = "message_array";
+    final static String MESSAGE_NSTUDENTS = "message_nStudents";
+    final static String MESSAGE_MAXSCORE = "message_maxScore";
+    final static String MESSAGE_FILEPATH = "message_filepath";
+
     // Make sure to be using android.support.v7.app.ActionBarDrawerToggle version.
     // The android.support.v4.app.ActionBarDrawerToggle has been deprecated.
     private ActionBarDrawerToggle drawerToggle;
@@ -232,12 +238,5 @@ public class MainActivity extends AppCompatActivity
         return contextOfApplication;
     }
 
-    public void setLabel_filename_text(String value){
-        label_filename_text = value;
-    }
-
-    public String getLabel_filename_text(){
-        return label_filename_text;
-    }
 
 }
