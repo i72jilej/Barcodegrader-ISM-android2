@@ -3,6 +3,7 @@ package com.github.i72jilej.barcodegrader;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,8 +34,6 @@ public class GradeFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     private TextView testtext = null;
-    Bundle args = getArguments();
-
 
     public GradeFragment() {
         // Required empty public constructor
@@ -75,10 +74,9 @@ public class GradeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_grade, container, false);
 
-
         testtext = (TextView) view.findViewById(R.id.testtext);
-        if (args  != null && args.containsKey(MainActivity.MESSAGE_FILEPATH))
-            testtext.setText(args.getString(MainActivity.MESSAGE_FILEPATH));
+
+        testtext.setText(GlobalVars.getInstance().getCsvArray().get(1)[2]);
 
 
 

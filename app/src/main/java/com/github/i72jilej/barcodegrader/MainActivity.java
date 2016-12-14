@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
     implements  LoadCsvFragment.OnFragmentInteractionListener,
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity
 
     LoadCsvFragment loadCsvFragment = null;;
     FragmentManager fragmentManager = getSupportFragmentManager();
+
 
     //Intent messages
     final static String MESSAGE_ARRAY = "message_array";
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity
 
         if(loadCsvFragment == null)
             loadCsvFragment = new LoadCsvFragment();
+
         fragmentManager.beginTransaction().replace(R.id.flContent, loadCsvFragment).commit();
 
         /*
@@ -200,10 +203,16 @@ public class MainActivity extends AppCompatActivity
                 fragmentManager.beginTransaction().replace(R.id.flContent, loadCsvFragment).commit();
                 break;
             case R.id.nav_fragment_grade:
-                if(gradeFragment == null)
-                    gradeFragment = new GradeFragment();
+                if(GlobalVars.getInstance().getCsvArray().isEmpty()){
+                    Toast.makeText(getApplicationContext(), R.string.alert_noCsv_text, Toast.LENGTH_LONG).show();
+                }
+                else{
+                    if(gradeFragment == null) {
+                        gradeFragment = new GradeFragment();
+                    }
 
-                fragmentManager.beginTransaction().replace(R.id.flContent, gradeFragment).commit();
+                    fragmentManager.beginTransaction().replace(R.id.flContent, gradeFragment).commit();
+                }
                 break;
             case R.id.nav_fragment_createCodes:
                 if(createCodesFragment == null)

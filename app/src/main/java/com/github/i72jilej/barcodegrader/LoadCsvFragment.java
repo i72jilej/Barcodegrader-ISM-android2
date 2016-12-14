@@ -48,6 +48,7 @@ public class LoadCsvFragment extends Fragment {
     // Codes for onActivityResult
     private static final int PICKFILE_RESULT_CODE = 1;
 
+
     //Widgets
     private TextView info_filename;
     private TextView info_nStudents;
@@ -253,16 +254,15 @@ public class LoadCsvFragment extends Fragment {
                                     }
                                     //TODO Check if the csv file is in the correct format
 
-                                    info_maxScore_text = csvArray.get(1)[5];
+                                    info_maxScore_text = csvArray.get(1)[5]; //TODO Look for the correct column
                                     info_maxScore.setText(info_maxScore_text);
                                     info_nStudents_text = String.valueOf(csvArray.size() - 1);
                                     info_nStudents.setText(info_nStudents_text);
 
-                                    final Bundle bundle = new Bundle();
-                                    bundle.putString(MainActivity.MESSAGE_FILEPATH, file_path);
-                                    setArguments(bundle);
-
-
+                                    GlobalVars.getInstance().setInfo_filename(info_filename_text);
+                                    GlobalVars.getInstance().setInfo_maxScore(info_maxScore_text);
+                                    GlobalVars.getInstance().setInfo_nStudents(info_nStudents_text);
+                                    GlobalVars.getInstance().setCsvArray(csvArray);
 
                                 }catch(IOException e){}
                             }
