@@ -20,6 +20,12 @@
     <string name="info_default_noFile">(Ningún fichero cargado)</string>
     <string name="label_button_showCsv">Mostrar alumnos</string>
 
+    <string name="label_button_manualMode">Modo manual</string>
+    <string name="label_button_autoMode">Modo automático</string>
+    <string name="label_manualMode_description">En el modo manual, cada alumno se escanea y califica por separado.</string>
+    <string name="label_autoMode_description">En el modo automático, los alumnos se escanean uno tras otro y se les asigna la nota máxima a cada uno.</string>
+
     <string name="alert_noCsv_text">El fichero elegido no es un csv</string>
     <string name="alert_fileNotFound">No se puede acceder al fichero elegido</string>
+    <string name="alert_noFileLoad">Aún no se ha cargado ningún fichero csv</string>
 </resources>

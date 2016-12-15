@@ -33,8 +33,6 @@ public class GradeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private TextView testtext = null;
-
     public GradeFragment() {
         // Required empty public constructor
     }
@@ -73,12 +71,6 @@ public class GradeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_grade, container, false);
-
-        testtext = (TextView) view.findViewById(R.id.testtext);
-
-        testtext.setText(GlobalVars.getInstance().getCsvArray().get(1)[2]);
-
-
 
         return view;
     }

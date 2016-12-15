@@ -200,17 +200,19 @@ public class MainActivity extends AppCompatActivity
                 if(loadCsvFragment == null)
                     loadCsvFragment = new LoadCsvFragment();
 
+                setVisual(menuItem);
                 fragmentManager.beginTransaction().replace(R.id.flContent, loadCsvFragment).commit();
                 break;
             case R.id.nav_fragment_grade:
                 if(GlobalVars.getInstance().getCsvArray().isEmpty()){
-                    Toast.makeText(getApplicationContext(), R.string.alert_noCsv_text, Toast.LENGTH_LONG).show();
+                    nvDrawer.getMenu().findItem(R.id.nav_fragment_loadCsv).setChecked(true);
+                    Toast.makeText(getApplicationContext(), R.string.alert_noFileLoad, Toast.LENGTH_LONG).show();
                 }
                 else{
                     if(gradeFragment == null) {
                         gradeFragment = new GradeFragment();
                     }
-
+                    setVisual(menuItem);
                     fragmentManager.beginTransaction().replace(R.id.flContent, gradeFragment).commit();
                 }
                 break;
@@ -218,25 +220,28 @@ public class MainActivity extends AppCompatActivity
                 if(createCodesFragment == null)
                     createCodesFragment = new CreateCodesFragment();
 
+                setVisual(menuItem);
                 fragmentManager.beginTransaction().replace(R.id.flContent, createCodesFragment).commit();
                 break;
             case R.id.nav_fragment_settings:
                 if(settingsFragment == null)
                     settingsFragment = new SettingsFragment();
 
+                setVisual(menuItem);
                 fragmentManager.beginTransaction().replace(R.id.flContent, settingsFragment).commit();
                 break;
             default:
                 if(loadCsvFragment == null)
                     loadCsvFragment = new LoadCsvFragment();
 
+                setVisual(menuItem);
                 fragmentManager.beginTransaction().replace(R.id.flContent, loadCsvFragment).commit();
         }
 
         // Highlight the selected item has been done by NavigationView
-        menuItem.setChecked(true);
+        //menuItem.setChecked(true);
         // Set action bar title
-        setTitle(menuItem.getTitle());
+        //setTitle(menuItem.getTitle());
         // Close the navigation drawer
         mDrawer.closeDrawers();
     }
@@ -247,5 +252,11 @@ public class MainActivity extends AppCompatActivity
         return contextOfApplication;
     }
 
-
+    public void setVisual(MenuItem item){
+        item.setChecked(true);
+        setTitle(item.getTitle());
+    }
 }
+
+
+
