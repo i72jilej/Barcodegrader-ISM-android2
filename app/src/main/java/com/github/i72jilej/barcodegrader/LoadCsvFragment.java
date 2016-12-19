@@ -252,7 +252,7 @@ public class LoadCsvFragment extends Fragment {
                                         csvArray.add(nextLine);
                                         //System.out.println(csvArray.get(0)[0]); //(0) for the line, [0] for the element
                                     }
-                                    //TODO Check if the csv file is in the correct format
+                                    //TODO Check if the csv file is in the correct format (is possible?)
 
                                     info_maxScore_text = csvArray.get(1)[5]; //TODO Look for the correct column
                                     info_maxScore.setText(info_maxScore_text);

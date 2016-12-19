@@ -28,13 +28,6 @@ public class MainActivity extends AppCompatActivity
     LoadCsvFragment loadCsvFragment = null;;
     FragmentManager fragmentManager = getSupportFragmentManager();
 
-
-    //Intent messages
-    final static String MESSAGE_ARRAY = "message_array";
-    final static String MESSAGE_NSTUDENTS = "message_nStudents";
-    final static String MESSAGE_MAXSCORE = "message_maxScore";
-    final static String MESSAGE_FILEPATH = "message_filepath";
-
     // Make sure to be using android.support.v7.app.ActionBarDrawerToggle version.
     // The android.support.v4.app.ActionBarDrawerToggle has been deprecated.
     private ActionBarDrawerToggle drawerToggle;
@@ -205,7 +198,13 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_fragment_grade:
                 if(GlobalVars.getInstance().getCsvArray().isEmpty()){
-                    nvDrawer.getMenu().findItem(R.id.nav_fragment_loadCsv).setChecked(true);
+                    //nvDrawer.getMenu().findItem(R.id.nav_fragment_loadCsv).setChecked(true);
+                    //FIXME setChecked() method is bugged?
+                    menuItem.setChecked(false);
+                    //nvDrawer.getMenu().findItem(R.id.nav_fragment_loadCsv).setChecked(true);
+                    nvDrawer.setCheckedItem(R.id.nav_fragment_loadCsv);
+                    //setVisual(nvDrawer.getMenu().findItem(R.id.nav_fragment_loadCsv));
+
                     Toast.makeText(getApplicationContext(), R.string.alert_noFileLoad, Toast.LENGTH_LONG).show();
                 }
                 else{
