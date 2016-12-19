@@ -254,7 +254,7 @@ public class LoadCsvFragment extends Fragment {
                                     }
                                     //TODO Check if the csv file is in the correct format (is possible?)
 
-                                    info_maxScore_text = csvArray.get(1)[5]; //TODO Look for the correct column
+                                    info_maxScore_text = csvArray.get(1)[searchMaxGradeColumn(csvArray.get(0))]; //TODO catch if no maxGrade column is found <- checks file format?
                                     info_maxScore.setText(info_maxScore_text);
                                     info_nStudents_text = String.valueOf(csvArray.size() - 1);
                                     info_nStudents.setText(info_nStudents_text);
@@ -285,6 +285,18 @@ public class LoadCsvFragment extends Fragment {
                 break;
         }
 
+    }
+
+    private int searchMaxGradeColumn(String header[]){
+        int possition = 0;
+
+        while(possition < header.length &&
+                !header[possition].equals(applicationContext.getString(R.string.maxGrade_csvLabel))){
+            possition++;
+            //System.out.println(header[possition] + " - " + applicationContext.getString(R.string.maxGrade_csvLabel));
+        }
+
+        return possition;
     }
 
 }

@@ -7,6 +7,8 @@
         <string name="drawer_open">Abrir menú de navegación</string>
         <string name="drawer_close">Cerrar menú de navegación</string>
 
+    <string name="maxGrade_csvLabel">Calificación máxima</string>
+
     <string name="nav_loadCsv">Cargar csv</string>
     <string name="nav_grade">Calificar alumnos</string>
     <string name="nav_createCodes">Crear códigos</string>
