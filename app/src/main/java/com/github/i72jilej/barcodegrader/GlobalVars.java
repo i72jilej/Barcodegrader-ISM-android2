@@ -58,4 +58,8 @@ public class GlobalVars {
     public void setCsvArray(ArrayList<String[]> csvArray) {
         this.csvArray = csvArray;
     }
+
+    public void setCsvArrayValue(int row, int column, String value){
+        this.csvArray.get(row)[column] = value;
+    }
 }

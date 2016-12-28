@@ -16,10 +16,14 @@ import android.widget.Toast;
 import com.opencsv.CSVReader;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
@@ -47,6 +51,7 @@ public class LoadCsvFragment extends Fragment {
 
     // Codes for onActivityResult
     private static final int PICKFILE_RESULT_CODE = 1;
+    private static final int WRITE_REQUEST_CODE = 2;
 
 
     //Widgets
@@ -110,6 +115,8 @@ public class LoadCsvFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_load_csv, container, false);
 
+        applicationContext = getActivity().getApplicationContext();
+
         //Loading info labels
         info_filename = (TextView) view.findViewById(R.id.info_filename);
         info_nStudents = (TextView) view.findViewById(R.id.info_nStudents);
@@ -136,14 +143,29 @@ public class LoadCsvFragment extends Fragment {
         button_showCsv.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                System.out.println("SECOND");
-                System.out.println(info_filename_text);
+                if(GlobalVars.getInstance().getCsvArray().isEmpty()){
+                    Toast.makeText(applicationContext, R.string.alert_noFileLoad, Toast.LENGTH_LONG).show();
+                }
+                else{
+                    //saveCsv(view);
+                }
             }
         });
 
-        applicationContext = getActivity().getApplicationContext();
-
-
+        //Assigning onClick for saveCsv button
+        Button button_saveCsv = (Button) view.findViewById(R.id.button_saveCsv);
+        button_saveCsv.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                System.out.println("SAVING");
+                if(GlobalVars.getInstance().getCsvArray().isEmpty()){
+                    Toast.makeText(applicationContext, R.string.alert_noFileLoad, Toast.LENGTH_LONG).show();
+                }
+                else{
+                    saveCsv(view);
+                }
+            }
+        });
 
         return view;
     }
@@ -187,7 +209,7 @@ public class LoadCsvFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    //On Click para el botón de cargar csv
+    //OnClick for loadCsv
     public void loadCsv(View v) {
         // Note (eliminar cuando la leais): Esto daba problemas porque
         // Use ACTION_GET_CONTENT if you want your app to simply read/import data. With this approach, the app imports a _*_copy of the data_*_, such as an image file.
@@ -207,15 +229,31 @@ public class LoadCsvFragment extends Fragment {
 
     }
 
+    //OnClick for saveCsv
+    public void saveCsv(View v){
+        //TODO block if not file has been loaded
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+
+        intent.setType("text/csv");
+
+        File file = new File(inputUri.getPath());
+        String new_filename = file.getName();
+        new_filename = new_filename.substring(0, new_filename.length()-4) + "-graded.csv";
+        intent.putExtra(Intent.EXTRA_TITLE, new_filename);
+        System.out.println(new_filename);
+
+        startActivityForResult(intent, WRITE_REQUEST_CODE);
+    }
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
             case PICKFILE_RESULT_CODE:  //After choosing a file in the file explorer
                 System.out.println("EXPLORER CLOSED");
 
-                CSVReader csvFile = null;
-                InputStream inputStream = null;
-                BufferedReader reader = null;
+                CSVReader csvFile;
+                InputStream inputStream;
+                BufferedReader reader;
 
                 if(resultCode == RESULT_OK){ //If a file has been chosen
                     System.out.println("FILE CHOSEN");
@@ -277,10 +315,48 @@ public class LoadCsvFragment extends Fragment {
                             Toast.makeText(applicationContext, R.string.alert_fileNotFound, Toast.LENGTH_LONG).show();
                         }
                     }
-
                 }
                 else{
                     System.out.println("NO FILE CHOSEN");
+                }
+                break;
+
+
+            case WRITE_REQUEST_CODE:
+                if(resultCode == RESULT_OK && data != null){
+                    Uri outputUri = data.getData();
+                    System.out.println("URI: " + outputUri.toString());
+
+                    try{
+                        OutputStream outputStream = applicationContext.getContentResolver().openOutputStream(outputUri);
+                        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+
+                        int nfil = csvArray.size();
+                        int ncol = csvArray.get(0).length;
+
+                        try{
+                            for (int i = 0; i < nfil; i++) {
+                                for (int j = 0; j < ncol; j++) {
+                                    writer.write("\"" + csvArray.get(i)[j] + "\"");
+                                    if (j != ncol - 1)
+                                        writer.write(",");
+                                }
+                                writer.write("\r\n");
+                            }
+
+                            writer.close();
+                            outputStream.close();
+                            Toast.makeText(applicationContext, R.string.alert_fileSaved, Toast.LENGTH_LONG).show();
+
+                        }catch(IOException e){
+
+                        }
+
+                    }catch(FileNotFoundException e){
+
+                    }
+
+
                 }
                 break;
         }

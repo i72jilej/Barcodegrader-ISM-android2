@@ -9,7 +9,7 @@
 
     <string name="maxGrade_csvLabel">Calificación máxima</string>
 
-    <string name="nav_loadCsv">Cargar csv</string>
+    <string name="nav_loadCsv">Administrar csv</string>
     <string name="nav_grade">Calificar alumnos</string>
     <string name="nav_createCodes">Crear códigos</string>
     <string name="nav_settings">Opciones</string>
@@ -21,6 +21,7 @@
     <string name="label_maxScore">Nota máxima:</string>
     <string name="info_default_noFile">(Ningún fichero cargado)</string>
     <string name="label_button_showCsv">Mostrar alumnos</string>
+    <string name="label_button_saveCsv">Guardar cambios</string>
 
     <string name="label_button_manualMode">Modo manual</string>
     <string name="label_button_autoMode">Modo automático</string>
@@ -30,4 +31,5 @@
     <string name="alert_noCsv_text">El fichero elegido no es un csv</string>
     <string name="alert_fileNotFound">No se puede acceder al fichero elegido</string>
     <string name="alert_noFileLoad">Aún no se ha cargado ningún fichero csv</string>
+    <string name="alert_fileSaved">Fichero creado en: </string>
 </resources>

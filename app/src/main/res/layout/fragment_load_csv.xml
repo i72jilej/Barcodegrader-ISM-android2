@@ -63,13 +63,26 @@
                 android:layout_height="wrap_content"
                 android:text="@string/info_default_noFile" />
 
-            <Button
-                android:id="@+id/button_showCsv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/label_button_showCsv"
-                android:layout_marginTop="@dimen/label_topMargin"
-                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/button_showCsv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_button_showCsv"
+                    android:layout_marginTop="@dimen/label_topMargin"
+                    android:layout_weight="0.5"
+                    />
+                <Button
+                    android:id="@+id/button_saveCsv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_button_saveCsv"
+                    android:layout_weight="0.5"
+                    android:layout_marginTop="@dimen/label_topMargin"/>
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
