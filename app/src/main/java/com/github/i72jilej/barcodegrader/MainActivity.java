@@ -182,10 +182,10 @@ public class MainActivity extends AppCompatActivity
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
          */
 
-        Fragment fragment = null;
+        //Fragment fragment = null;
         //LoadCsvFragment loadCsvFragment = null;
         //FragmentManager fragmentManager = getSupportFragmentManager();
-        GradeFragment gradeFragment = null;
+        //GradeFragment gradeFragment = null;
         CreateCodesFragment createCodesFragment = null;
         SettingsFragment settingsFragment = null;
         switch(menuItem.getItemId()){
@@ -208,11 +208,12 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(getApplicationContext(), R.string.alert_noFileLoad, Toast.LENGTH_LONG).show();
                 }
                 else{
-                    if(gradeFragment == null) {
-                        gradeFragment = new GradeFragment();
+                    if(GlobalVars.getInstance().getGradeFragment() == null) {
+                        //gradeFragment = new GradeFragment();
+                        GlobalVars.getInstance().setGradeFragment(new GradeFragment());
                     }
                     setVisual(menuItem);
-                    fragmentManager.beginTransaction().replace(R.id.flContent, gradeFragment).commit();
+                    fragmentManager.beginTransaction().replace(R.id.flContent, GlobalVars.getInstance().getGradeFragment()).commit();
                 }
                 break;
             case R.id.nav_fragment_createCodes:

@@ -4,8 +4,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-        <string name="drawer_open">Abrir menú de navegación</string>
-        <string name="drawer_close">Cerrar menú de navegación</string>
+    <string name="drawer_open">Abrir menú de navegación</string>
+    <string name="drawer_close">Cerrar menú de navegación</string>
 
     <string name="maxGrade_csvLabel">Calificación máxima</string>
 
@@ -32,4 +32,12 @@
     <string name="alert_fileNotFound">No se puede acceder al fichero elegido</string>
     <string name="alert_noFileLoad">Aún no se ha cargado ningún fichero csv</string>
     <string name="alert_fileSaved">Fichero creado en: </string>
+
+    <string name="label_button_scan_code">Escanear código</string>
+    <string name="label_student_name">Nombre:</string>
+    <string name="info_default_student_name">(Ningún alumno cargado)</string>
+    <string name="label_student_email">e-mail:</string>
+    <string name="info_default_student_email">(Ningún alumno cargado)</string>
+    <string name="info_label_default_grade">Nota (máx. </string>
+
 </resources>

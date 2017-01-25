@@ -16,6 +16,7 @@ public class GlobalVars {
     private String info_maxScore;
     private String info_nStudents;
     private ArrayList<String[]> csvArray = new ArrayList<String[]>();
+    GradeFragment gradeFragment = null;
 
     public static GlobalVars getInstance(){
         if(global==null){
@@ -61,5 +62,13 @@ public class GlobalVars {
 
     public void setCsvArrayValue(int row, int column, String value){
         this.csvArray.get(row)[column] = value;
+    }
+
+    public GradeFragment getGradeFragment() {
+        return gradeFragment;
+    }
+
+    public void setGradeFragment(GradeFragment gradeFragment) {
+        this.gradeFragment = gradeFragment;
     }
 }

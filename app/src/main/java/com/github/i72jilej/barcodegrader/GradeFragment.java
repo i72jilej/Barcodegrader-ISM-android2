@@ -1,16 +1,14 @@
 package com.github.i72jilej.barcodegrader;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
+import android.widget.Button;
 
 
 /**
@@ -30,6 +28,11 @@ public class GradeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    //ManualModeFragment manualModeFragment = null;
+    //FragmentManager fragmentManager = getFragmentManager();
+
+    Context applicationContext = null;
 
     private OnFragmentInteractionListener mListener;
 
@@ -71,6 +74,29 @@ public class GradeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_grade, container, false);
+
+        applicationContext = getActivity().getApplicationContext();
+
+        Button button_manualMode = (Button) view.findViewById(R.id.button_manualMode);
+        button_manualMode.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                /*
+                if(manualModeFragment == null){
+                    manualModeFragment = new ManualModeFragment();
+                }
+                if(fragmentManager == null)
+                        System.out.println("NULL");
+
+                fragmentManager.beginTransaction().replace(R.id.flContent, manualModeFragment).commit();
+                */
+
+                Intent manualtInt = new Intent(applicationContext, ManualModeActivity2.class);
+                startActivity(manualtInt);
+
+            }
+        });
+
 
         return view;
     }
