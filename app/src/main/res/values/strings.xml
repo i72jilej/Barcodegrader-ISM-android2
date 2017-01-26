@@ -33,11 +33,17 @@
     <string name="alert_noFileLoad">Aún no se ha cargado ningún fichero csv</string>
     <string name="alert_fileSaved">Fichero creado en: </string>
 
+    <string name="title_activity_manual_mode">Modo Manual</string>
     <string name="label_button_scan_code">Escanear código</string>
+    <string name="label_button_delete">Borrar nota</string>
     <string name="label_student_name">Nombre:</string>
     <string name="info_default_student_name">(Ningún alumno cargado)</string>
     <string name="label_student_email">e-mail:</string>
     <string name="info_default_student_email">(Ningún alumno cargado)</string>
     <string name="info_label_default_grade">Nota (máx. </string>
+    <string name="alert_no_code">Fallo al leer el código</string>
+    <string name="alert_student_not_found">Alumno no encontrado en el fichero</string>
+    <string name="alert_student_not_loaded">No se ha escaneado ningún código</string>
+    <string name="alert_max_grade">La nota máxima es </string>
 
 </resources>

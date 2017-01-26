@@ -91,7 +91,7 @@ public class GradeFragment extends Fragment {
                 fragmentManager.beginTransaction().replace(R.id.flContent, manualModeFragment).commit();
                 */
 
-                Intent manualtInt = new Intent(applicationContext, ManualModeActivity2.class);
+                Intent manualtInt = new Intent(applicationContext, ManualModeActivity.class);
                 startActivity(manualtInt);
 
             }
