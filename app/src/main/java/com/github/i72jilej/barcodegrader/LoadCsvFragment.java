@@ -106,6 +106,7 @@ public class LoadCsvFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setRetainInstance(true);
+        System.out.println("FRAGMENT onActivityCreated");
     }
 
     @Override
@@ -118,16 +119,25 @@ public class LoadCsvFragment extends Fragment {
 
         applicationContext = getActivity().getApplicationContext();
 
+        System.out.println("FRAGMENT onCreateView");
+        //rebuildUI(view);
+
         //Loading info labels
         info_filename = (TextView) view.findViewById(R.id.info_filename);
         info_nStudents = (TextView) view.findViewById(R.id.info_nStudents);
         info_maxScore = (TextView) view.findViewById(R.id.info_maxScore);
 
         //Checking if it's a reload for rebuilding UI
-        if (info_filename_text != null){
+        /*if (info_filename_text != null){
             info_filename.setText(info_filename_text);
             info_nStudents.setText(info_nStudents_text);
             info_maxScore.setText(info_maxScore_text);
+        }*/
+
+        if (GlobalVars.getInstance().getInfo_filename() != null){
+            info_filename.setText(GlobalVars.getInstance().getInfo_filename());
+            info_nStudents.setText(GlobalVars.getInstance().getInfo_nStudents());
+            info_maxScore.setText(GlobalVars.getInstance().getInfo_maxScore());
         }
 
         //Assigning onClick for loadCsv button
@@ -375,5 +385,59 @@ public class LoadCsvFragment extends Fragment {
 
         return possition;
     }
+
+    /*
+    private void rebuildUI(final View view){
+        //Loading info labels
+        info_filename = (TextView) view.findViewById(R.id.info_filename);
+        info_nStudents = (TextView) view.findViewById(R.id.info_nStudents);
+        info_maxScore = (TextView) view.findViewById(R.id.info_maxScore);
+
+        //Checking if it's a reload for rebuilding UI
+        if (info_filename_text != null){
+            info_filename.setText(info_filename_text);
+            info_nStudents.setText(info_nStudents_text);
+            info_maxScore.setText(info_maxScore_text);
+        }
+
+        //Assigning onClick for loadCsv button
+        Button button_loadCsv = (Button) view.findViewById(R.id.button_loadCsv);
+        button_loadCsv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadCsv(view);
+            }
+        });
+
+        //Assign onClick for showCsv button
+        Button button_showCsv = (Button) view.findViewById(R.id.button_showCsv);
+        button_showCsv.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if(GlobalVars.getInstance().getCsvArray().isEmpty()){
+                    Toast.makeText(applicationContext, R.string.alert_noFileLoad, Toast.LENGTH_LONG).show();
+                }
+                else{
+                    //saveCsv(view);
+                }
+            }
+        });
+
+        //Assigning onClick for saveCsv button
+        Button button_saveCsv = (Button) view.findViewById(R.id.button_saveCsv);
+        button_saveCsv.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                System.out.println("SAVING");
+                if(GlobalVars.getInstance().getCsvArray().isEmpty()){
+                    Toast.makeText(applicationContext, R.string.alert_noFileLoad, Toast.LENGTH_LONG).show();
+                }
+                else{
+                    saveCsv(view);
+                }
+            }
+        });
+    }
+    */
 
 }
