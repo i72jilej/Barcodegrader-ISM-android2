@@ -34,6 +34,7 @@
             android:name=".AutoModeActivity"
             android:label="@string/title_activity_auto_mode"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
