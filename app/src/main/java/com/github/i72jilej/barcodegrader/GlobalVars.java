@@ -1,5 +1,7 @@
 package com.github.i72jilej.barcodegrader;
 
+import android.net.Uri;
+
 import java.util.ArrayList;
 
 /**
@@ -9,14 +11,13 @@ import java.util.ArrayList;
 public class GlobalVars {
     private static GlobalVars global;
 
-    private String test;
-
     //LoadCsv
     private String info_filename;
     private String info_maxScore;
     private String info_nStudents;
     private ArrayList<String[]> csvArray = new ArrayList<String[]>();
     GradeFragment gradeFragment = null;
+    private Uri inputUri = null;
 
     public static GlobalVars getInstance(){
         if(global==null){
@@ -24,9 +25,6 @@ public class GlobalVars {
         }
         return global;
     }
-
-    public void setTest(String x){test = x;}
-    public String getTest(){return test;}
 
     public String getInfo_filename() {
         return info_filename;
@@ -70,5 +68,13 @@ public class GlobalVars {
 
     public void setGradeFragment(GradeFragment gradeFragment) {
         this.gradeFragment = gradeFragment;
+    }
+
+    public Uri getInputUri() {
+        return inputUri;
+    }
+
+    public void setInputUri(Uri inputUri) {
+        this.inputUri = inputUri;
     }
 }

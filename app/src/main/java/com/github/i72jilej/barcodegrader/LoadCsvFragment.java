@@ -65,7 +65,7 @@ public class LoadCsvFragment extends Fragment {
     private String info_nStudents_text = null;
     private String info_maxScore_text = null;
 
-    private Uri inputUri = null;
+    //private Uri inputUri = null;
     Context applicationContext = null;
     private ArrayList<String[]> csvArray = new ArrayList<String[]>();
 
@@ -247,7 +247,8 @@ public class LoadCsvFragment extends Fragment {
 
         intent.setType("text/csv");
 
-        File file = new File(inputUri.getPath());
+        //File file = new File(inputUri.getPath());
+        File file = new File(GlobalVars.getInstance().getInputUri().getPath());
         String new_filename = file.getName();
         new_filename = new_filename.substring(0, new_filename.length()-4) + "-graded.csv";
         intent.putExtra(Intent.EXTRA_TITLE, new_filename);
@@ -270,15 +271,18 @@ public class LoadCsvFragment extends Fragment {
                     System.out.println("FILE CHOSEN");
 
                     if(data != null){
-                        inputUri = data.getData();
+                        //inputUri = data.getData();
+                        GlobalVars.getInstance().setInputUri(data.getData());
 
                         try{
-                            inputStream = applicationContext.getContentResolver().openInputStream(inputUri);
+                            //inputStream = applicationContext.getContentResolver().openInputStream(inputUri);
+                            inputStream = applicationContext.getContentResolver().openInputStream(GlobalVars.getInstance().getInputUri());
                             reader = new BufferedReader(new InputStreamReader(inputStream));
                             csvFile = new CSVReader(reader);
 
                             //Checking if it is a csv file
-                            file_path = Uri.decode(inputUri.toString());
+                            //file_path = Uri.decode(inputUri.toString());
+                            file_path = Uri.decode(GlobalVars.getInstance().getInputUri().toString());
 
                             System.out.println(file_path);
                             System.out.println(file_path.substring(file_path.length()-4));
@@ -313,7 +317,9 @@ public class LoadCsvFragment extends Fragment {
                                     GlobalVars.getInstance().setInfo_nStudents(info_nStudents_text);
                                     GlobalVars.getInstance().setCsvArray(csvArray);
 
-                                }catch(IOException e){}
+                                }catch(IOException e){
+                                    e.printStackTrace();
+                                }
                             }
                             else{
                                 System.out.println("FILE IS NOT A CSV");
@@ -342,13 +348,16 @@ public class LoadCsvFragment extends Fragment {
                         OutputStream outputStream = applicationContext.getContentResolver().openOutputStream(outputUri);
                         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
 
-                        int nfil = csvArray.size();
-                        int ncol = csvArray.get(0).length;
+                        //int nfil = csvArray.size();
+                        int nfil = GlobalVars.getInstance().getCsvArray().size();
+                        //int ncol = csvArray.get(0).length;
+                        int ncol = GlobalVars.getInstance().getCsvArray().get(0).length;
 
                         try{
                             for (int i = 0; i < nfil; i++) {
                                 for (int j = 0; j < ncol; j++) {
-                                    writer.write("\"" + csvArray.get(i)[j] + "\"");
+                                    //writer.write("\"" + csvArray.get(i)[j] + "\"");
+                                    writer.write("\"" + GlobalVars.getInstance().getCsvArray().get(i)[j] + "\"");
                                     if (j != ncol - 1)
                                         writer.write(",");
                                 }
@@ -360,11 +369,12 @@ public class LoadCsvFragment extends Fragment {
                             Toast.makeText(applicationContext, R.string.alert_fileSaved, Toast.LENGTH_LONG).show();
 
                         }catch(IOException e){
+                            e.printStackTrace();
 
                         }
 
                     }catch(FileNotFoundException e){
-
+                        e.printStackTrace();
                     }
 
 
@@ -385,59 +395,4 @@ public class LoadCsvFragment extends Fragment {
 
         return possition;
     }
-
-    /*
-    private void rebuildUI(final View view){
-        //Loading info labels
-        info_filename = (TextView) view.findViewById(R.id.info_filename);
-        info_nStudents = (TextView) view.findViewById(R.id.info_nStudents);
-        info_maxScore = (TextView) view.findViewById(R.id.info_maxScore);
-
-        //Checking if it's a reload for rebuilding UI
-        if (info_filename_text != null){
-            info_filename.setText(info_filename_text);
-            info_nStudents.setText(info_nStudents_text);
-            info_maxScore.setText(info_maxScore_text);
-        }
-
-        //Assigning onClick for loadCsv button
-        Button button_loadCsv = (Button) view.findViewById(R.id.button_loadCsv);
-        button_loadCsv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadCsv(view);
-            }
-        });
-
-        //Assign onClick for showCsv button
-        Button button_showCsv = (Button) view.findViewById(R.id.button_showCsv);
-        button_showCsv.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if(GlobalVars.getInstance().getCsvArray().isEmpty()){
-                    Toast.makeText(applicationContext, R.string.alert_noFileLoad, Toast.LENGTH_LONG).show();
-                }
-                else{
-                    //saveCsv(view);
-                }
-            }
-        });
-
-        //Assigning onClick for saveCsv button
-        Button button_saveCsv = (Button) view.findViewById(R.id.button_saveCsv);
-        button_saveCsv.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                System.out.println("SAVING");
-                if(GlobalVars.getInstance().getCsvArray().isEmpty()){
-                    Toast.makeText(applicationContext, R.string.alert_noFileLoad, Toast.LENGTH_LONG).show();
-                }
-                else{
-                    saveCsv(view);
-                }
-            }
-        });
-    }
-    */
-
 }

@@ -45,5 +45,6 @@
     <string name="alert_student_not_found">Alumno no encontrado en el fichero</string>
     <string name="alert_student_not_loaded">No se ha escaneado ningún código</string>
     <string name="alert_max_grade">La nota máxima es </string>
+    <string name="title_activity_auto_mode">Modo automático</string>
 
 </resources>

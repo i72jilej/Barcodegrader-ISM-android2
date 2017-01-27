@@ -97,6 +97,15 @@ public class GradeFragment extends Fragment {
             }
         });
 
+        Button button_autoMode = (Button) view.findViewById(R.id.button_autoMode);
+        button_autoMode.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent autoInt = new Intent(applicationContext, AutoModeActivity.class);
+                startActivity(autoInt);
+            }
+        });
+
 
         return view;
     }

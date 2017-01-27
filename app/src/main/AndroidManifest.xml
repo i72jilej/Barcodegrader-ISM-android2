@@ -24,8 +24,17 @@
             android:name=".ManualModeActivity"
             android:label="@string/title_activity_manual_mode"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.github.i72jilej.barcodegrader.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AutoModeActivity"
+            android:label="@string/title_activity_auto_mode"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.github.i72jilej.barcodegrader.MainActivity" />
