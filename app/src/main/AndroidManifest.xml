@@ -40,6 +40,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.github.i72jilej.barcodegrader.MainActivity" />
         </activity>
+        <activity
+            android:name=".ShowCsvActivity"
+            android:label="@string/title_activity_show_csv"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.github.i72jilej.barcodegrader.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

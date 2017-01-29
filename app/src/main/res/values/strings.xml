@@ -53,4 +53,7 @@
     <string name="info_default_codes_not_found">(Ninguno)</string>
     <string name="alert_codes_not_found">Se han detectado códigos ausentes en el fichero csv.</string>
 
+    <string name="title_activity_show_csv">Mostrar CSV</string>
+    <string name="label_grade_date">Nota (Fecha): </string>
+
 </resources>
