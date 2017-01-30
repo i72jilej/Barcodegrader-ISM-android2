@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class ShowCsvActivity extends AppCompatActivity {
 
+    ArrayList<CsvListItem> listItemsArray;
     ListView csvList;
-
-    CsvListAdapter csvList_adapter;
+    private static CsvListAdapter csvList_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +37,18 @@ public class ShowCsvActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         csvList = (ListView) findViewById(R.id.csv_all);
+        listItemsArray = new ArrayList<>();
 
-        //csvList_adapter = new CsvListAdapter(getApplicationContext(), )
+        for(int i = 1; i < GlobalVars.getInstance().getCsvArray().size(); i++){
+            listItemsArray.add(new CsvListItem(GlobalVars.getInstance().getCsvArray().get(i)[1],
+                                                GlobalVars.getInstance().getCsvArray().get(i)[2],
+                                                GlobalVars.getInstance().getCsvArray().get(i)[3]));
+        }
+
+        csvList_adapter = new CsvListAdapter(listItemsArray, getApplicationContext());
+
+        csvList.setAdapter(csvList_adapter);
+
 
 
     }

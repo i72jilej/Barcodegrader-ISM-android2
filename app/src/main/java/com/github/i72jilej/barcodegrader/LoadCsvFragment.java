@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.opencsv.CSVReader;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -369,9 +371,8 @@ public class LoadCsvFragment extends Fragment {
                             outputStream.close();
                             Toast.makeText(applicationContext, R.string.alert_fileSaved, Toast.LENGTH_LONG).show();
 
-                        }catch(IOException e){
+                        }catch(IOException | NullPointerException e){
                             e.printStackTrace();
-
                         }
 
                     }catch(FileNotFoundException e){

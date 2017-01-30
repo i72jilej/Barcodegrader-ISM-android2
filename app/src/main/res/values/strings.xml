@@ -31,7 +31,7 @@
     <string name="alert_noCsv_text">El fichero elegido no es un csv</string>
     <string name="alert_fileNotFound">No se puede acceder al fichero elegido</string>
     <string name="alert_noFileLoad">Aún no se ha cargado ningún fichero csv</string>
-    <string name="alert_fileSaved">Fichero creado en: </string>
+    <string name="alert_fileSaved">Fichero guardado con éxito</string>
 
     <string name="title_activity_manual_mode">Modo Manual</string>
     <string name="label_button_scan_code">Escanear código</string>
@@ -54,6 +54,8 @@
     <string name="alert_codes_not_found">Se han detectado códigos ausentes en el fichero csv.</string>
 
     <string name="title_activity_show_csv">Mostrar CSV</string>
-    <string name="label_grade_date">Nota (Fecha): </string>
+    <string name="label_list_grade">Nota:  </string>
+    <string name="label_list_name">Nombre: </string>
+    <string name="label_list_email">Email: </string>
 
 </resources>

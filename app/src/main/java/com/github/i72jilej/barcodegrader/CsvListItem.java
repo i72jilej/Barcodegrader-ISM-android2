@@ -9,10 +9,10 @@ public class CsvListItem {
     private String studentEmail;
     private String gradeDate;
 
-    public CsvListItem(String[] student){
-        studentName = student[1];
-        studentEmail = student[2];
-        gradeDate = student[3] + " (" + student[6] + ")";
+    public CsvListItem(String name, String email, String grade){
+        this.studentName = name;
+        this.studentEmail = email;
+        this.gradeDate = grade;
     }
 
     public String getStudentName() {
