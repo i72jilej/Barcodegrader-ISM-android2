@@ -110,15 +110,17 @@ public class ManualModeActivity extends AppCompatActivity {
         //Searchs for a student in the array and returns it possition. Returns 0 if it is not found
         int row = 0;
 
-        while (!GlobalVars.getInstance().getCsvArray().get(row)[0].equals(code) &&
-                row < GlobalVars.getInstance().getCsvArray().size()) {
+        while (row < GlobalVars.getInstance().getCsvArray().size() && !GlobalVars.getInstance().getCsvArray().get(row)[0].equals(code)) {
+            //System.out.println("ROW: " + row + "CODE: " + code + " -> " + GlobalVars.getInstance().getCsvArray().get(row)[0]);
             row++;
         }
 
         if (row == GlobalVars.getInstance().getCsvArray().size()){
+            //System.out.println("NOT FOUND");
             row = 0;
         }
 
+        //System.out.println("RETURN: " + row);
         return row;
     }
 
