@@ -36,7 +36,7 @@ public class ShowCsvActivity extends AppCompatActivity {
 
         csvList = (ListView) findViewById(R.id.csv_all);
 
-        csvList_adapter = new CsvListAdapter(getApplicationContext(), )
+        //csvList_adapter = new CsvListAdapter(getApplicationContext(), )
 
 
     }

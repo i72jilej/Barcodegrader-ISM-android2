@@ -121,6 +121,7 @@ public class AutoModeActivity extends AppCompatActivity {
                                 scannedStudents_adapter.clear();
 
                             scannedStudents_adapter.add(GlobalVars.getInstance().getCsvArray().get(i)[1]);
+                            GlobalVars.getInstance().setCsvArrayValue(i,3, GlobalVars.getInstance().getInfo_maxScore());
                             first = false;
 
                             readedCodes.remove(pos);
