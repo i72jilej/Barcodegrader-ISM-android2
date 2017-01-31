@@ -29,5 +29,6 @@ dependencies {
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.opencsv:opencsv:3.7'
     compile 'com.google.zxing:android-integration:3.0.0'
+    compile 'com.google.zxing:core:2.0'
     testCompile 'junit:junit:4.12'
 }

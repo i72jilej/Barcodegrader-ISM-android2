@@ -1,12 +1,26 @@
 package com.github.i72jilej.barcodegrader;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+
 
 
 /**
@@ -28,6 +42,8 @@ public class CreateCodesFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    Context applicationContext = null;
 
     public CreateCodesFragment() {
         // Required empty public constructor
@@ -64,7 +80,19 @@ public class CreateCodesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_codes, container, false);
+        final View view = inflater.inflate(R.layout.fragment_create_codes, container, false);
+
+        Button button_createCodes = (Button) view.findViewById(R.id.button_createCodes);
+        button_createCodes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createCodes(view);
+            }
+        });
+
+        applicationContext = getActivity().getApplicationContext();
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -104,5 +132,59 @@ public class CreateCodesFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void createCodes(View view){
+        //Preparing codes to be encoded
+        ArrayList<String> codes = new ArrayList<>();
+        int codeW = 180;
+        int codeH = 40;
+
+        codes.clear();
+        for(int i = 0; i < GlobalVars.getInstance().getCsvArray().size(); i++){
+            codes.add(GlobalVars.getInstance().getCsvArrayValue(i, 0));
+        }
+
+        //Generating barcodes
+        MultiFormatWriter writer = new MultiFormatWriter();
+        BitMatrix matrix;
+        Bitmap bitmap = null;
+
+        //TODO loop here
+        try {
+            matrix = writer.encode(codes.get(0), BarcodeFormat.CODE_128, 150, 150);
+            bitmap = generateBitmap(matrix);
+
+        }
+        catch (WriterException e){
+            e.printStackTrace();
+        }
+
+
+        //TESTING
+        if(bitmap != null){
+            ImageView test = (ImageView) view.findViewById(R.id.testImageView);
+            test.setImageBitmap(bitmap);
+        }
+        else{
+            Toast.makeText(applicationContext, R.string.alert_fileNotFound, Toast.LENGTH_LONG).show();
+        }
+        //END TESTING
+
+    }
+
+    private Bitmap generateBitmap(BitMatrix matrix){
+        int codeW = 180;
+        int codeH = 40;
+
+        Bitmap bitmap = Bitmap.createBitmap(codeW, codeH, Bitmap.Config.ARGB_8888);
+
+        for(int i = 0; i < codeW; i++){
+            for(int j = 0; j < codeH; j++){
+                bitmap.setPixel(i, j, matrix.get(i, j) ? Color.BLACK: Color.WHITE);
+            }
+        }
+
+        return bitmap;
     }
 }

@@ -58,4 +58,7 @@
     <string name="label_list_name">Nombre: </string>
     <string name="label_list_email">Email: </string>
 
+    <string name="label_createCodes_description">Genere los códigos necesarios para cada alumno a partir del archivo csv cargado.</string>
+    <string name="label_createCodes_button">Guardar archivo de códigos</string>
+
 </resources>

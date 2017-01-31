@@ -62,6 +62,10 @@ public class GlobalVars {
         this.csvArray.get(row)[column] = value;
     }
 
+    public String getCsvArrayValue(int row, int column){
+        return this.csvArray.get(row)[column];
+    }
+
     public GradeFragment getGradeFragment() {
         return gradeFragment;
     }
