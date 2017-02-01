@@ -137,11 +137,11 @@ public class CreateCodesFragment extends Fragment {
     public void createCodes(View view){
         //Preparing codes to be encoded
         ArrayList<String> codes = new ArrayList<>();
-        int codeW = 180;
-        int codeH = 40;
+        int codeW = 720;
+        int codeH = 120;
 
         codes.clear();
-        for(int i = 0; i < GlobalVars.getInstance().getCsvArray().size(); i++){
+        for(int i = 1; i < GlobalVars.getInstance().getCsvArray().size(); i++){
             codes.add(GlobalVars.getInstance().getCsvArrayValue(i, 0));
         }
 
@@ -152,8 +152,9 @@ public class CreateCodesFragment extends Fragment {
 
         //TODO loop here
         try {
-            matrix = writer.encode(codes.get(0), BarcodeFormat.CODE_128, 150, 150);
-            bitmap = generateBitmap(matrix);
+            matrix = writer.encode(codes.get(0), BarcodeFormat.CODE_128, codeW, codeH);
+            System.out.println("CODE: " + codes.get(0));
+            bitmap = generateBitmap(matrix, codeW, codeH);
 
         }
         catch (WriterException e){
@@ -173,10 +174,7 @@ public class CreateCodesFragment extends Fragment {
 
     }
 
-    private Bitmap generateBitmap(BitMatrix matrix){
-        int codeW = 180;
-        int codeH = 40;
-
+    private Bitmap generateBitmap(BitMatrix matrix, int codeW, int codeH){
         Bitmap bitmap = Bitmap.createBitmap(codeW, codeH, Bitmap.Config.ARGB_8888);
 
         for(int i = 0; i < codeW; i++){
