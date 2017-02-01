@@ -14,9 +14,11 @@
             android:id="@+id/nav_fragment_createCodes"
             android:icon="@drawable/ic_action_barcode_1"
             android:title="@string/nav_createCodes" />
+        <!--
         <item
             android:id="@+id/nav_fragment_settings"
             android:icon="@drawable/ic_settings"
             android:title="@string/nav_settings" />
+            -->
     </group>
 </menu>

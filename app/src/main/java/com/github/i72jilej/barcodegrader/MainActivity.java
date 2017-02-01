@@ -215,12 +215,22 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
             case R.id.nav_fragment_createCodes:
-                if(createCodesFragment == null)
-                    createCodesFragment = new CreateCodesFragment();
+                if(GlobalVars.getInstance().getCsvArray().isEmpty()){
+                    //FIXME setChecked() method is bugged?
+                    menuItem.setChecked(false);
+                    nvDrawer.setCheckedItem(R.id.nav_fragment_createCodes);
 
-                setVisual(menuItem);
-                fragmentManager.beginTransaction().replace(R.id.flContent, createCodesFragment).commit();
+                    Toast.makeText(getApplicationContext(), R.string.alert_noFileLoad, Toast.LENGTH_LONG).show();
+                }
+                else {
+                    if (createCodesFragment == null)
+                        createCodesFragment = new CreateCodesFragment();
+
+                    setVisual(menuItem);
+                    fragmentManager.beginTransaction().replace(R.id.flContent, createCodesFragment).commit();
+                }
                 break;
+            /*
             case R.id.nav_fragment_settings:
                 if(settingsFragment == null)
                     settingsFragment = new SettingsFragment();
@@ -228,6 +238,7 @@ public class MainActivity extends AppCompatActivity
                 setVisual(menuItem);
                 fragmentManager.beginTransaction().replace(R.id.flContent, settingsFragment).commit();
                 break;
+                */
             default:
                 if(loadCsvFragment == null)
                     loadCsvFragment = new LoadCsvFragment();
@@ -244,8 +255,8 @@ public class MainActivity extends AppCompatActivity
         mDrawer.closeDrawers();
     }
 
-    public static Context contextOfApplication;
-    public static Context getContextOfApplication()
+    public Context contextOfApplication;
+    public Context getContextOfApplication()
     {
         return contextOfApplication;
     }

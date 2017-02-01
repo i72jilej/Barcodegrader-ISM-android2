@@ -22,8 +22,11 @@ import com.google.zxing.common.BitMatrix;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -190,17 +193,6 @@ public class CreateCodesFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-        //TESTING
-        /*
-        if(bitmap != null){
-            ImageView test = (ImageView) view.findViewById(R.id.testImageView);
-            test.setImageBitmap(bitmap);
-        }
-        else{
-            Toast.makeText(applicationContext, R.string.alert_fileNotFound, Toast.LENGTH_LONG).show();
-        }
-        */
-        //END TESTING
 
         //http://tutorials.jenkov.com/java-itext/index.html
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
@@ -265,8 +257,8 @@ public class CreateCodesFragment extends Fragment {
                             //Creating cell
                             PdfPCell cell = new PdfPCell();
                             cell.addElement(image);
-                            cell.addElement(new Paragraph(codesArray.get(j)));
-                            cell.addElement(new Paragraph(namesArray.get(j)));
+                            cell.addElement(new Paragraph(new Phrase(codesArray.get(j), FontFactory.getFont(FontFactory.HELVETICA, 8, Font.NORMAL))));
+                            cell.addElement(new Paragraph(new Phrase(namesArray.get(j), FontFactory.getFont(FontFactory.HELVETICA, 8, Font.NORMAL))));
 
                             //cell.setBorder(Rectangle.NO_BORDER);
                             cell.setPadding(5);

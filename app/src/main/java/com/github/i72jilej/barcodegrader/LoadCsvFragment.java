@@ -243,7 +243,6 @@ public class LoadCsvFragment extends Fragment {
 
     //OnClick for saveCsv
     public void saveCsv(View v){
-        //TODO block if not file has been loaded
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
 
         intent.setType("text/csv");
@@ -295,7 +294,6 @@ public class LoadCsvFragment extends Fragment {
                                 for(String aux2 : aux) {
                                     info_filename_text = aux2;
                                 }
-                                info_filename.setText(info_filename_text);
 
                                 csvArray.clear();
                                 String[] nextLine;
@@ -308,15 +306,21 @@ public class LoadCsvFragment extends Fragment {
                                     }
                                     //TODO Check if the csv file is in the correct format (is possible?)
 
-                                    info_maxScore_text = csvArray.get(1)[searchMaxGradeColumn(csvArray.get(0))]; //TODO catch if no maxGrade column is found <- checks file format?
-                                    info_maxScore.setText(info_maxScore_text);
-                                    info_nStudents_text = String.valueOf(csvArray.size() - 1);
-                                    info_nStudents.setText(info_nStudents_text);
+                                    if(searchMaxGradeColumn(csvArray.get(0)) != -1){
+                                        info_filename.setText(info_filename_text);
+                                        info_maxScore_text = csvArray.get(1)[searchMaxGradeColumn(csvArray.get(0))];
+                                        info_maxScore.setText(info_maxScore_text);
+                                        info_nStudents_text = String.valueOf(csvArray.size() - 1);
+                                        info_nStudents.setText(info_nStudents_text);
 
-                                    GlobalVars.getInstance().setInfo_filename(info_filename_text);
-                                    GlobalVars.getInstance().setInfo_maxScore(info_maxScore_text);
-                                    GlobalVars.getInstance().setInfo_nStudents(info_nStudents_text);
-                                    GlobalVars.getInstance().setCsvArray(csvArray);
+                                        GlobalVars.getInstance().setInfo_filename(info_filename_text);
+                                        GlobalVars.getInstance().setInfo_maxScore(info_maxScore_text);
+                                        GlobalVars.getInstance().setInfo_nStudents(info_nStudents_text);
+                                        GlobalVars.getInstance().setCsvArray(csvArray);
+                                    }
+                                    else{
+                                        Toast.makeText(applicationContext, R.string.alert_no_maxGrade_column, Toast.LENGTH_LONG).show();
+                                    }
 
                                 }catch(IOException e){
                                     e.printStackTrace();
@@ -391,6 +395,10 @@ public class LoadCsvFragment extends Fragment {
                 !header[possition].equals(applicationContext.getString(R.string.maxGrade_csvLabel))){
             possition++;
             //System.out.println(header[possition] + " - " + applicationContext.getString(R.string.maxGrade_csvLabel));
+        }
+
+        if(possition == header.length){
+            possition = -1;
         }
 
         return possition;
