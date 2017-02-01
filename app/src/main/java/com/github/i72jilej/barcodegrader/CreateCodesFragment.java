@@ -24,6 +24,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -162,8 +163,8 @@ public class CreateCodesFragment extends Fragment {
 
     public void createCodes(View view){
         //Preparing codes to be encoded
-        int codeW = 100;
-        int codeH = 30;
+        int codeW = 500;
+        int codeH = 60;
 
         codesArray.clear();
         namesArray.clear();
@@ -266,6 +267,9 @@ public class CreateCodesFragment extends Fragment {
                             cell.addElement(image);
                             cell.addElement(new Paragraph(codesArray.get(j)));
                             cell.addElement(new Paragraph(namesArray.get(j)));
+
+                            //cell.setBorder(Rectangle.NO_BORDER);
+                            cell.setPadding(5);
 
                             //Adding cells
                             for(int i = 0; i < nCells; i++) {
