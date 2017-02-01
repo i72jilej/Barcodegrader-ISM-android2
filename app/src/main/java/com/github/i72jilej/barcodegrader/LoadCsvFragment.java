@@ -373,7 +373,7 @@ public class LoadCsvFragment extends Fragment {
                             e.printStackTrace();
                         }
 
-                    }catch(FileNotFoundException e){
+                    }catch(NullPointerException | FileNotFoundException e){
                         e.printStackTrace();
                     }
 
