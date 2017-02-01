@@ -13,13 +13,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+
+import java.util.ArrayList;
 
 
 
@@ -171,6 +170,9 @@ public class CreateCodesFragment extends Fragment {
             Toast.makeText(applicationContext, R.string.alert_fileNotFound, Toast.LENGTH_LONG).show();
         }
         //END TESTING
+
+        //http://tutorials.jenkov.com/java-itext/index.html
+
 
     }
 

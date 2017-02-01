@@ -5,13 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextClock;
 import android.widget.TextView;
 
-import com.github.i72jilej.barcodegrader.CsvListItem;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ralka on 28/01/2017.
