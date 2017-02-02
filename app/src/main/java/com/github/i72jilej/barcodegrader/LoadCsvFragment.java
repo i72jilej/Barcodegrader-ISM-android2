@@ -114,7 +114,7 @@ public class LoadCsvFragment extends Fragment {
         //http://stackoverflow.com/questions/12026442/setretaininstance-not-retaining-the-instance
 
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_load_csv, container, false);
+        final View view = inflater.inflate(R.l+ayout.fragment_load_csv, container, false);
 
         applicationContext = getActivity().getApplicationContext();
 
@@ -127,12 +127,6 @@ public class LoadCsvFragment extends Fragment {
         info_maxScore = (TextView) view.findViewById(R.id.info_maxScore);
 
         //Checking if it's a reload for rebuilding UI
-        /*if (info_filename_text != null){
-            info_filename.setText(info_filename_text);
-            info_nStudents.setText(info_nStudents_text);
-            info_maxScore.setText(info_maxScore_text);
-        }*/
-
         if (GlobalVars.getInstance().getInfo_filename() != null){
             info_filename.setText(GlobalVars.getInstance().getInfo_filename());
             info_nStudents.setText(GlobalVars.getInstance().getInfo_nStudents());
