@@ -32,8 +32,6 @@ public class AutoModeActivity extends AppCompatActivity {
 
     IntentIntegrator autoModeIntegrator;
 
-    //String[] scannedStudents_array = {"(Ningún alumno escaneado)"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,16 +39,6 @@ public class AutoModeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /**
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-         **/
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nStudentsLabel = (TextView) findViewById(R.id.info_nStudents);
@@ -80,7 +68,7 @@ public class AutoModeActivity extends AppCompatActivity {
             case IntentIntegrator.REQUEST_CODE:
                 if(resultCode == RESULT_OK){
                     //When returning from each scan
-                    System.out.println("SCANNING");
+                    //System.out.println("SCANNING");
                     IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
                     String code = intentResult.getContents(); //Pescando el código escaneado en esta vuelta
                     System.out.println(code);
@@ -100,20 +88,20 @@ public class AutoModeActivity extends AppCompatActivity {
                     String code;
                     int pos;
 
-                    System.out.println("READED CODES");
+                    //System.out.println("READED CODES");
                     for(int i = 0; i < readedCodes.size(); i++){
                         System.out.print(readedCodes.get(i));
                     }
 
                     //
 
-                    System.out.println("ANALYZING");
+                    //System.out.println("ANALYZING");
                     for(int i = 1; i < GlobalVars.getInstance().getCsvArray().size(); i++){
                         code = GlobalVars.getInstance().getCsvArray().get(i)[0];
 
-                        System.out.println("-> " + code);
+                        //System.out.println("-> " + code);
                         if((pos = readedCodes.indexOf(code)) != -1){
-                            System.out.println("-> FOUND");
+                            //System.out.println("-> FOUND");
 
                             if(first)
                                 scannedStudents_adapter.clear();
@@ -127,11 +115,11 @@ public class AutoModeActivity extends AppCompatActivity {
 
 
                     }
-                    System.out.println("END ANALYZING");
+                    //System.out.println("END ANALYZING");
 
                     //Adding not found codes
                     if(!readedCodes.isEmpty()){
-                        System.out.println("ADDING NOTFOUNDCODES");
+                        //System.out.println("ADDING NOTFOUNDCODES");
                         notFoundCodes_adapter.clear();
                         Toast.makeText(getApplicationContext(), R.string.alert_codes_not_found, Toast.LENGTH_LONG).show();
 
@@ -139,11 +127,16 @@ public class AutoModeActivity extends AppCompatActivity {
                             notFoundCodes_adapter.add(readedCodes.get(j));
                         }
                     }
+
                 }
         }
     }
 
     public void startAutoMode(View v){
+        readedCodes.clear();
+        notFoundCodes_array.clear();
+        scannedStudents_array.clear();
+
         autoModeIntegrator.initiateScan();
     }
 

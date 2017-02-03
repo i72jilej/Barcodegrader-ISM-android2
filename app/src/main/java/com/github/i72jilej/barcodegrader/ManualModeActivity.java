@@ -35,15 +35,6 @@ public class ManualModeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /**FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });**/
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         studentName = (TextView) findViewById(R.id.info_student_name);
@@ -86,11 +77,11 @@ public class ManualModeActivity extends AppCompatActivity {
     }
 
     public void manualScan (View v){
-        System.out.println("SCANNING");
+        //System.out.println("SCANNING");
         IntentIntegrator scanIntegrator = new IntentIntegrator(this);
 
         scanIntegrator.initiateScan(); //Result is catched by onActivityResult
-        System.out.println("SCANNED");
+        //System.out.println("SCANNED");
     }
 
     public void deleteGrade(View v){
@@ -186,20 +177,20 @@ public class ManualModeActivity extends AppCompatActivity {
             if(studentRow != 0){
                 if(!studentGrade.getText().toString().equals("")) {
                     if (Float.valueOf(studentGrade.getText().toString()) > maxGrade) {
-                        System.out.println("NOTA MAYOR");
+                        //System.out.println("NOTA MAYOR");
                         Toast.makeText(getApplicationContext(), getResources().getString(R.string.alert_max_grade) + String.valueOf(maxGrade), Toast.LENGTH_LONG).show();
                         GlobalVars.getInstance().getCsvArray().get(studentRow)[3] = "";
 
 
                         studentGrade.setText("");
                     } else if (Float.valueOf(studentGrade.getText().toString()) <= maxGrade) {
-                        System.out.println("NOTA OK");
+                        //System.out.println("NOTA OK");
 
                         GlobalVars.getInstance().getCsvArray().get(studentRow)[3] = studentGrade.getText().toString();
                     }
                 }
                 else{
-                  System.out.println("NOTA EMPTY");
+                  //System.out.println("NOTA EMPTY");
                     GlobalVars.getInstance().getCsvArray().get(studentRow)[3] = "";
                 }
             }

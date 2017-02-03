@@ -118,9 +118,6 @@ public class CreateCodesFragment extends Fragment {
         });
 
         applicationContext = getActivity().getApplicationContext();
-        //bitmapArray = new ArrayList<>();
-
-
 
         return view;
     }
@@ -185,7 +182,7 @@ public class CreateCodesFragment extends Fragment {
             try {
                 matrix = writer.encode(codesArray.get(i), BarcodeFormat.CODE_128, codeW, codeH);
                 bitmapArray.add(generateBitmap(matrix, codeW, codeH));
-                System.out.println("CODE: " + codesArray.get(i) + " BITMAPARRAY SIZE: " + bitmapArray.size());
+                //System.out.println("CODE: " + codesArray.get(i) + " BITMAPARRAY SIZE: " + bitmapArray.size());
 
                 matrix.clear();
             }
@@ -202,7 +199,7 @@ public class CreateCodesFragment extends Fragment {
         String new_filename = file.getName();
         new_filename = new_filename.substring(0, new_filename.length()-4) + "-codes.pdf";
         intent.putExtra(Intent.EXTRA_TITLE, new_filename);
-        System.out.println(new_filename);
+        //System.out.println(new_filename);
 
         startActivityForResult(intent, WRITE_REQUEST_CODE);
 
@@ -225,7 +222,7 @@ public class CreateCodesFragment extends Fragment {
             case WRITE_REQUEST_CODE:
                 if(resultCode == RESULT_OK && data != null) {
                     Uri outputUri = data.getData();
-                    System.out.println("URI: " + outputUri.toString());
+                    //System.out.println("URI: " + outputUri.toString());
                     Document document = new Document();
 
                     try{

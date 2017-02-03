@@ -105,7 +105,7 @@ public class LoadCsvFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setRetainInstance(true);
-        System.out.println("FRAGMENT onActivityCreated");
+        //System.out.println("FRAGMENT onActivityCreated");
     }
 
     @Override
@@ -114,12 +114,11 @@ public class LoadCsvFragment extends Fragment {
         //http://stackoverflow.com/questions/12026442/setretaininstance-not-retaining-the-instance
 
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.l+ayout.fragment_load_csv, container, false);
+        final View view = inflater.inflate(R.layout.fragment_load_csv, container, false);
 
         applicationContext = getActivity().getApplicationContext();
 
-        System.out.println("FRAGMENT onCreateView");
-        //rebuildUI(view);
+        //System.out.println("FRAGMENT onCreateView");
 
         //Loading info labels
         info_filename = (TextView) view.findViewById(R.id.info_filename);
@@ -255,14 +254,14 @@ public class LoadCsvFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
             case PICKFILE_RESULT_CODE:  //After choosing a file in the file explorer
-                System.out.println("EXPLORER CLOSED");
+                //System.out.println("EXPLORER CLOSED");
 
                 CSVReader csvFile;
                 InputStream inputStream;
                 BufferedReader reader;
 
                 if(resultCode == RESULT_OK){ //If a file has been chosen
-                    System.out.println("FILE CHOSEN");
+                    //System.out.println("FILE CHOSEN");
 
                     if(data != null){
                         //inputUri = data.getData();
@@ -282,7 +281,7 @@ public class LoadCsvFragment extends Fragment {
                             System.out.println(file_path.substring(file_path.length()-4));
 
                             if(file_path.substring(file_path.length()-4).equals(".csv")){
-                                System.out.println("FILE IS A CSV");
+                                //System.out.println("FILE IS A CSV");
 
                                 String[] aux = file_path.split("/");
                                 for(String aux2 : aux) {
@@ -321,7 +320,7 @@ public class LoadCsvFragment extends Fragment {
                                 }
                             }
                             else{
-                                System.out.println("FILE IS NOT A CSV");
+                                //System.out.println("FILE IS NOT A CSV");
 
                                 Toast.makeText(applicationContext, R.string.alert_noCsv_text, Toast.LENGTH_LONG).show();
                                 file_path = "";
@@ -333,7 +332,7 @@ public class LoadCsvFragment extends Fragment {
                     }
                 }
                 else{
-                    System.out.println("NO FILE CHOSEN");
+                    //System.out.println("NO FILE CHOSEN");
                 }
                 break;
 
@@ -341,7 +340,7 @@ public class LoadCsvFragment extends Fragment {
             case WRITE_REQUEST_CODE:
                 if(resultCode == RESULT_OK && data != null){
                     Uri outputUri = data.getData();
-                    System.out.println("URI: " + outputUri.toString());
+                    //System.out.println("URI: " + outputUri.toString());
 
                     try{
                         OutputStream outputStream = applicationContext.getContentResolver().openOutputStream(outputUri);

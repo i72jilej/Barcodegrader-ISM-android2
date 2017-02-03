@@ -20,16 +20,6 @@ public class ShowCsvActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         csvList = (ListView) findViewById(R.id.csv_all);
@@ -44,8 +34,6 @@ public class ShowCsvActivity extends AppCompatActivity {
         csvList_adapter = new CsvListAdapter(listItemsArray, getApplicationContext());
 
         csvList.setAdapter(csvList_adapter);
-
-
 
     }
 

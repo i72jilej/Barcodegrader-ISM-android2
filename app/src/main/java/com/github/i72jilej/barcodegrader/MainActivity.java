@@ -17,8 +17,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
     implements  LoadCsvFragment.OnFragmentInteractionListener,
                 GradeFragment.OnFragmentInteractionListener,
-                CreateCodesFragment.OnFragmentInteractionListener,
-                SettingsFragment.OnFragmentInteractionListener{
+                CreateCodesFragment.OnFragmentInteractionListener{
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
@@ -148,44 +147,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void selectDrawerItem(MenuItem menuItem) {
-        /**
-        // Create a new fragment and specify the fragment to show based on nav item clicked
-        Fragment fragment = null;
-        Class fragmentClass;
-        switch(menuItem.getItemId()) {
-            case R.id.nav_fragment_loadCsv:
-                fragmentClass = LoadCsvFragment.class;
-                break;
-            case R.id.nav_fragment_grade:
-                fragmentClass = GradeFragment.class;
-                break;
-            case R.id.nav_fragment_createCodes:
-                fragmentClass = CreateCodesFragment.class;
-                break;
-            case R.id.nav_fragment_settings:
-                fragmentClass = SettingsFragment.class;
-                break;
-            default:
-                fragmentClass = LoadCsvFragment.class;
-        }
-
-        try {
-            fragment = (Fragment) fragmentClass.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-         */
-
-        //Fragment fragment = null;
-        //LoadCsvFragment loadCsvFragment = null;
-        //FragmentManager fragmentManager = getSupportFragmentManager();
-        //GradeFragment gradeFragment = null;
         CreateCodesFragment createCodesFragment = null;
-        SettingsFragment settingsFragment = null;
         switch(menuItem.getItemId()){
             case R.id.nav_fragment_loadCsv:
                 if(loadCsvFragment == null)
@@ -207,7 +169,6 @@ public class MainActivity extends AppCompatActivity
                 }
                 else{
                     if(GlobalVars.getInstance().getGradeFragment() == null) {
-                        //gradeFragment = new GradeFragment();
                         GlobalVars.getInstance().setGradeFragment(new GradeFragment());
                     }
                     setVisual(menuItem);
@@ -230,15 +191,6 @@ public class MainActivity extends AppCompatActivity
                     fragmentManager.beginTransaction().replace(R.id.flContent, createCodesFragment).commit();
                 }
                 break;
-            /*
-            case R.id.nav_fragment_settings:
-                if(settingsFragment == null)
-                    settingsFragment = new SettingsFragment();
-
-                setVisual(menuItem);
-                fragmentManager.beginTransaction().replace(R.id.flContent, settingsFragment).commit();
-                break;
-                */
             default:
                 if(loadCsvFragment == null)
                     loadCsvFragment = new LoadCsvFragment();
