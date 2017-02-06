@@ -22,7 +22,7 @@
     <string name="info_default_noFile">(Ningún fichero cargado)</string>
     <string name="label_button_showCsv">Mostrar alumnos</string>
     <string name="label_button_saveCsv">Guardar cambios</string>
-    <string name="alert_no_maxGrade_column">No se ha podido detectar la columna de la calificación máxima. Revise el formato del fichero.</string>
+    <string name="alert_no_maxGrade_column">No se ha encontrado la columna de la calificación máxima. Revise el formato del fichero.</string>
 
     <string name="label_button_manualMode">Modo manual</string>
     <string name="label_button_autoMode">Modo automático</string>
@@ -61,5 +61,8 @@
 
     <string name="label_createCodes_description">Genere los códigos necesarios para cada alumno a partir del archivo csv cargado.</string>
     <string name="label_createCodes_button">Guardar archivo de códigos</string>
+
+    <string name="label_exit_title">¿Confirmar cierre?</string>
+    <string name="label_exit_text">Los datos no guardados podrían perderse</string>
 
 </resources>
