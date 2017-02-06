@@ -176,14 +176,14 @@ public class ManualModeActivity extends AppCompatActivity {
         public void afterTextChanged(Editable s) {
             if(studentRow != 0){
                 if(!studentGrade.getText().toString().equals("")) {
-                    if (Float.valueOf(studentGrade.getText().toString()) > maxGrade) {
+                    if (Float.valueOf(studentGrade.getText().toString().replaceAll(",",".")) > maxGrade) {
                         //System.out.println("NOTA MAYOR");
                         Toast.makeText(getApplicationContext(), getResources().getString(R.string.alert_max_grade) + String.valueOf(maxGrade), Toast.LENGTH_LONG).show();
                         GlobalVars.getInstance().getCsvArray().get(studentRow)[3] = "";
 
 
                         studentGrade.setText("");
-                    } else if (Float.valueOf(studentGrade.getText().toString()) <= maxGrade) {
+                    } else if (Float.valueOf(studentGrade.getText().toString().replaceAll(",",".")) <= maxGrade) {
                         //System.out.println("NOTA OK");
 
                         GlobalVars.getInstance().getCsvArray().get(studentRow)[3] = studentGrade.getText().toString();
